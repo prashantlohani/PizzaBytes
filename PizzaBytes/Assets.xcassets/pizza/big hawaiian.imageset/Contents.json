@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "big hawaiian.jpeg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
