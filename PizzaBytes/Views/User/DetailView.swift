@@ -89,6 +89,7 @@ struct DetailView: View {
                 .frame(width: 350, alignment: .leading)
                 .background(.opacity(0.1))
                 .cornerRadius(20)
+                .foregroundColor(Color.accentColor)
                 
                 HStack{
                     Text("Select Base:")
@@ -119,6 +120,7 @@ struct DetailView: View {
                 .frame(width: 350, alignment: .leading)
                 .background(.opacity(0.1))
                 .cornerRadius(20)
+                .foregroundColor(Color.accentColor)
                 
                 HStack{
                     Text("Select Topping:")
@@ -149,6 +151,7 @@ struct DetailView: View {
                 .frame(width: 350, alignment: .leading)
                 .background(.opacity(0.1))
                 .cornerRadius(20)
+                .foregroundColor(Color.accentColor)
                 
                 Button(action: {
                     print("cart button tapped")

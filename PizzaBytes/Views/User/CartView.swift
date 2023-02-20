@@ -37,17 +37,33 @@ struct CartView: View {
                 .padding()
                 
                 TextField("Full Name", text: $userName)
-                    .padding(.leading, 13).padding(.trailing, 13)
-                    .textContentType(.name)
-                    .textFieldStyle(RoundedBorderTextFieldStyle.init())
+                    .font(.headline)
+                    .padding()
+                    .cornerRadius(10)
+                    .foregroundColor(Color.accentColor)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocorrectionDisabled()
+                    .accessibilityIdentifier("nameField")
+                    
+                
                 TextField("Enter Phone number", text: $userPhone)
-                    .padding(.leading, 13).padding(.trailing, 13)
-                    .textContentType(.telephoneNumber)
-                    .textFieldStyle(RoundedBorderTextFieldStyle.init())
+                    .font(.headline)
+                    .padding()
+                    .cornerRadius(10)
+                    .foregroundColor(Color.accentColor)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(.numberPad)
+                    .accessibilityIdentifier("phoneField")
+                    
                 TextField("Enter complete address", text: $userAddress)
-                    .padding(.leading, 13).padding(.trailing, 13)
-                    .textContentType(.fullStreetAddress)
-                    .textFieldStyle(RoundedBorderTextFieldStyle.init())
+                    .font(.headline)
+                    .padding()
+                    .cornerRadius(10)
+                    .foregroundColor(Color.accentColor)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .autocorrectionDisabled()
+                    .accessibilityIdentifier("addressField")
+            
                 
                 Button(action: {
                     print("place order button tapped")
