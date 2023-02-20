@@ -18,6 +18,7 @@
 - Cart View (Select multiple pizza) 
 - Driver Module -
 - Show list of Orders
+- Mark as Delivered
 - Mock api success to show saved data in UserDefault
 
 
