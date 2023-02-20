@@ -12,6 +12,10 @@ struct PizzaBytesApp: App {
     
     @StateObject var cartManager: CartManager = CartManager()
     
+    init() {
+        ServerConfig.shared.setUpServerConfig()
+    }
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
