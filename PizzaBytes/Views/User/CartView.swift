@@ -22,29 +22,29 @@ struct CartView: View {
     var body: some View {
         
         ScrollView {
-            if cartManager.pizzas.count > 0 {
-                ForEach(cartManager.pizzas, id: \.id) {
-                    pizza in
-                    ProductRow(pizza: pizza)
-                }
-                
-                HStack {
-                    Text("Your cart total is")
-                    Spacer()
-                    Text("$\(cartManager.total).00")
-                        .bold()
-                }
-                .padding()
-                
+            ForEach(cartManager.pizzas, id: \.id) {
+                pizza in
+                ProductRow(pizza: pizza)
+            }
+            
+            HStack {
+                Text("Your cart total is")
+                Spacer()
+                Text("$\(cartManager.total).00")
+                    .bold()
+            }
+            .padding()
+            VStack {
                 TextField("Full Name", text: $userName)
                     .font(.headline)
                     .padding()
                     .cornerRadius(10)
                     .foregroundColor(Color.accentColor)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocorrectionDisabled()
                     .accessibilityIdentifier("nameField")
-                    
+                    .keyboardType(.alphabet)
+                    .textContentType(.oneTimeCode)
+                    .autocorrectionDisabled(true)
                 
                 TextField("Enter Phone number", text: $userPhone)
                     .font(.headline)
@@ -52,43 +52,45 @@ struct CartView: View {
                     .cornerRadius(10)
                     .foregroundColor(Color.accentColor)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .keyboardType(.numberPad)
                     .accessibilityIdentifier("phoneField")
-                    
+                    .keyboardType(.numberPad)
+                    .textContentType(.oneTimeCode)
+                    .autocorrectionDisabled(true)
+                
                 TextField("Enter complete address", text: $userAddress)
                     .font(.headline)
                     .padding()
                     .cornerRadius(10)
                     .foregroundColor(Color.accentColor)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocorrectionDisabled()
                     .accessibilityIdentifier("addressField")
-            
-                
-                Button(action: {
-                    print("place order button tapped")
-                    let orderDetail = [Order(userName: userName, userAddress: userAddress, userPhone: userPhone, isDelivered: false, orderDetail: cartManager.pizzas)]
+                    .keyboardType(.alphabet)
+                    .textContentType(.oneTimeCode)
+                    .autocorrectionDisabled(true)
                     
-                    checkoutButtonPressed(orderDetail: orderDetail)
-                    
-                }) {
-                    Text("Place Order")
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .font(.system(size: 18))
-                        .padding()
-                        .foregroundColor(.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color.white, lineWidth: 2)
-                        )
-                }
-                .background(Color.red)
-                .cornerRadius(20)
-                .padding(20)
-                
-            }else {
-                Text("Your cart is empty")
             }
+            
+            Button(action: {
+                print("place order button tapped")
+                let orderDetail = [Order(userName: userName, userAddress: userAddress, userPhone: userPhone, isDelivered: false, orderDetail: cartManager.pizzas)]
+                
+                checkoutButtonPressed(orderDetail: orderDetail)
+                
+            }) {
+                Text("Place Order")
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .font(.system(size: 18))
+                    .padding()
+                    .foregroundColor(.white)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.white, lineWidth: 2)
+                    )
+            }
+            .background(Color.red)
+            .cornerRadius(20)
+            .padding(20)
+            
         }
         .navigationTitle(Text("My Cart"))
         .alert(isPresented: $showAlert, content: getAlert)

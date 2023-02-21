@@ -173,6 +173,7 @@ struct DetailView: View {
                 
             }
         }
+        
     }
     
     func addPizaToCart() {

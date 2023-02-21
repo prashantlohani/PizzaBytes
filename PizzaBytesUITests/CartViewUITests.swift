@@ -108,5 +108,7 @@ final class CartViewUITests: XCTestCase {
         
         //Then
         XCTAssertTrue(navBar.exists)
+        
+        
     }
 }

@@ -18,6 +18,7 @@ final class PizzaBytesTests: XCTestCase {
     override func tearDown() {
         subscriptions = []
     }
+    // An ``AnyCancellable`` instance automatically calls ``Cancellable/cancel()`` when deinitialized.
     var subscriptions = Set<AnyCancellable>()
     
     func test_getting_order_mock_api_success(){
@@ -26,6 +27,7 @@ final class PizzaBytesTests: XCTestCase {
         
         let promise = expectation(description: "getting orders")
         
+        //Sink => Returns: A cancellable instance, which you use when you end assignment of the received value. Deallocation of the result will tear down the subscription stream.
         fetcher.$orders.sink { orders in
             if orders.count > 0 {
                 promise.fulfill()

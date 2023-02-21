@@ -14,6 +14,8 @@ struct PizzaBytesApp: App {
     
     init() {
         ServerConfig.shared.setUpServerConfig()
+        
+        disableHardwareKeyboard()
     }
     
     var body: some Scene {
@@ -23,5 +25,16 @@ struct PizzaBytesApp: App {
             }
             .environmentObject(cartManager)
         }
+    }
+    
+    func disableHardwareKeyboard() {
+        #if targetEnvironment(simulator)
+        // Disable hardware keyboards.
+        let setHardwareLayout = NSSelectorFromString("setHardwareLayout:")
+        UITextInputMode.activeInputModes
+            // Filter `UIKeyboardInputMode`s.
+            .filter({ $0.responds(to: setHardwareLayout) })
+            .forEach { $0.perform(setHardwareLayout, with: nil) }
+        #endif
     }
 }

@@ -23,12 +23,15 @@ struct DriverView: View {
                 if orderManagerVM.orders.count > 0 {
                     ForEach(orderManagerVM.orders, id: \.id) {
                         order in
-                        OrderRow(order: order)
-                            .onTapGesture {
-                                withAnimation(.linear) {
-                                    orderManagerVM.updateOrder(order: order)
+                        if order.isDelivered {
+                            OrderRow(order: order)
+                                .onTapGesture {
+                                    withAnimation(.linear) {
+                                        orderManagerVM.updateOrder(order: order)
+                                    }
                                 }
-                            }
+                        }
+                        
                     }
                 }else {
                     Text("No orders to show")
